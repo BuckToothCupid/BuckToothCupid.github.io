@@ -1474,6 +1474,341 @@
         .copy-btn.copied {
             background: #28a745;
         }
+
+        /* Education Section */
+        .education-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .edu-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--pink-primary), var(--pink-dark));
+        }
+
+        .edu-card:hover {
+            border-color: var(--pink-primary);
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.2);
+        }
+
+        .edu-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .edu-content {
+            flex: 1;
+        }
+
+        .edu-school {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .edu-degree {
+            font-size: 1rem;
+            color: var(--pink-primary);
+            margin-bottom: 5px;
+        }
+
+        .edu-time {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .edu-gpa {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        /* Certificates Section */
+        .certificates-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: var(--pink-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+        }
+
+        .cert-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Honors Section */
+        .honors-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .honors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .honor-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .honor-item:hover {
+            border-color: var(--pink-primary);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .honor-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .honor-content {
+            flex: 1;
+        }
+
+        .honor-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .honor-level {
+            font-size: 0.85rem;
+            color: var(--pink-primary);
+            padding: 3px 10px;
+            background: rgba(255, 105, 180, 0.15);
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        /* Work Section */
+        .work-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .work-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .work-card {
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .work-card:hover {
+            border-color: var(--pink-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .work-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .work-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .work-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .work-org {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Competitions Section */
+        .competitions-section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .comp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .comp-card {
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink-dark), var(--pink-primary), var(--pink-glow));
+        }
+
+        .comp-card:hover {
+            border-color: var(--pink-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+        }
+
+        .comp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .comp-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .comp-award {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-primary));
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .comp-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Enhanced Quote Section */
+        .quote-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(199, 21, 133, 0.05), transparent);
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-primary);
+            max-width: 700px;
+            margin: 0 auto 20px;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--pink-primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-text::before {
+            top: -20px;
+            left: -30px;
+        }
+
+        .quote-text::after {
+            bottom: -40px;
+            right: -30px;
+        }
+
+        .quote-author {
+            color: var(--pink-primary);
+            font-size: 1rem;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -1506,6 +1841,8 @@
         <div class="nav-dot active" data-section="header" data-tooltip="首页"></div>
         <div class="nav-dot" data-section="stats" data-tooltip="统计"></div>
         <div class="nav-dot" data-section="about" data-tooltip="关于"></div>
+        <div class="nav-dot" data-section="education" data-tooltip="教育"></div>
+        <div class="nav-dot" data-section="honors" data-tooltip="荣誉"></div>
         <div class="nav-dot" data-section="skills" data-tooltip="技能"></div>
         <div class="nav-dot" data-section="projects" data-tooltip="项目"></div>
         <div class="nav-dot" data-section="timeline" data-tooltip="历程"></div>
@@ -1521,7 +1858,7 @@
 
     <div class="main-content" id="mainContent">
         <!-- Header -->
-        <header>
+        <header id="header">
             <div class="avatar-container">
                 <div class="avatar-glow"></div>
                 <div class="avatar-sparkles" id="sparkles"></div>
@@ -1531,10 +1868,11 @@
                 </div>
             </div>
             <h1 class="name glitch" data-text="BucktoothCupid">BucktoothCupid</h1>
-            <p class="title">开发工程师 & Tech Enthusiast</p>
+            <p class="title">开发工程师 & 电子信息硕士</p>
             <p class="bio">
-                热爱代码，追求卓越。专注于构建高性能、可扩展的应用程序。
-                热衷于探索前沿技术，为开源社区贡献力量。
+                📍四川成都人 · 中共党员<br>
+                电子科技大学（985）在读硕士 · 重庆大学（985）本科<br>
+                热爱技术，追求卓越，专注于后端开发与AI技术应用。
             </p>
             <div class="social-links">
                 <a href="https://github.com/BuckToothCupid" class="social-link" target="_blank">
@@ -1590,13 +1928,14 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        你好！我是 BucktoothCupid，一名开发工程师。
+                        你好！我是 ZTY，电子科技大学电子信息专业在读硕士。
                         我热爱编程，享受用代码创造价值的过程。
-                        我一直专注于开发和微服务架构设计，不断探索AI。
+                        我一直专注于后端开发和微服务架构设计，不断探索AI前沿技术。
                     </p>
                     <p>
                         我相信技术的力量可以改变世界，也始终保持对新技术的探索热情。
                         无论是后端架构还是前沿AI应用，我都在不断学习和成长。
+                        作为一名中共党员，我也注重团队协作与社会责任，积极参与学生工作和志愿服务。
                     </p>
                     <div class="about-highlights">
                         <div class="highlight-item">
@@ -1620,10 +1959,178 @@
             </div>
         </section>
 
+        <!-- Education Section -->
+        <section class="education-section fade-in" id="education">
+            <h2 class="section-title">教育背景</h2>
+            <div class="education-timeline">
+                <div class="edu-card">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-content">
+                        <div class="edu-school">电子科技大学（985）</div>
+                        <div class="edu-degree">电子信息 · 硕士</div>
+                        <div class="edu-time">2024年09月 - 2027年06月</div>
+                        <div class="edu-gpa">GPA: 3.8/4.0（专业前20%）</div>
+                    </div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-content">
+                        <div class="edu-school">重庆大学（985）</div>
+                        <div class="edu-degree">电子信息工程 · 本科</div>
+                        <div class="edu-time">2019年09月 - 2023年06月</div>
+                        <div class="edu-gpa">累计8次奖学金</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section class="certificates-section fade-in" id="certificates">
+            <h2 class="section-title">证书技能</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">📜</div>
+                    <div class="cert-name">英语 CET-6</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📜</div>
+                    <div class="cert-name">英语 CET-4</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">💻</div>
+                    <div class="cert-name">计算机 Python二级</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Honors Section -->
+        <section class="honors-section fade-in" id="honors">
+            <h2 class="section-title">奖项荣誉</h2>
+            <div class="honors-list">
+                <div class="honor-item">
+                    <span class="honor-icon">🏆</span>
+                    <div class="honor-content">
+                        <div class="honor-title">全国百佳心理委员</div>
+                        <div class="honor-level">国家级</div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <span class="honor-icon">🌟</span>
+                    <div class="honor-content">
+                        <div class="honor-title">重庆市青年志愿者先进个人</div>
+                        <div class="honor-level">省级</div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <span class="honor-icon">📚</span>
+                    <div class="honor-content">
+                        <div class="honor-title">电子科技大学学业奖学金</div>
+                        <div class="honor-level">校级</div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <span class="honor-icon">🎖️</span>
+                    <div class="honor-content">
+                        <div class="honor-title">电子科技大学优秀研究生</div>
+                        <div class="honor-level">校级</div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <span class="honor-icon">💰</span>
+                    <div class="honor-content">
+                        <div class="honor-title">重庆大学优秀学生综合奖学金</div>
+                        <div class="honor-level">校级 · 共8次</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="work-section fade-in" id="work">
+            <h2 class="section-title">学生工作</h2>
+            <div class="work-list">
+                <div class="work-card">
+                    <div class="work-header">
+                        <span class="work-icon">🏛️</span>
+                        <div class="work-info">
+                            <div class="work-title">重庆大学常任学生代表</div>
+                            <div class="work-org">重庆大学第二十九届</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-header">
+                        <span class="work-icon">📋</span>
+                        <div class="work-info">
+                            <div class="work-title">团委副书记</div>
+                            <div class="work-org">微电子与通信工程学院</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-header">
+                        <span class="work-icon">👔</span>
+                        <div class="work-info">
+                            <div class="work-title">学生会主席</div>
+                            <div class="work-org">微电子与通信工程学院</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-header">
+                        <span class="work-icon">❤️</span>
+                        <div class="work-info">
+                            <div class="work-title">志愿服务</div>
+                            <div class="work-org">累计服务时长 206 小时</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitions Section -->
+        <section class="competitions-section fade-in" id="competitions">
+            <h2 class="section-title">竞赛/创新实践</h2>
+            <div class="comp-grid">
+                <div class="comp-card">
+                    <div class="comp-icon">🏅</div>
+                    <div class="comp-content">
+                        <div class="comp-title">美国大学生数学建模竞赛</div>
+                        <div class="comp-award">H奖</div>
+                        <div class="comp-desc">国际级竞赛，团队协作解决复杂问题</div>
+                    </div>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-icon">🚀</div>
+                    <div class="comp-content">
+                        <div class="comp-title">国家级创业实践项目"小农优品"</div>
+                        <div class="comp-award">优秀结项</div>
+                        <div class="comp-desc">乡村振新创业项目，农产品电商平台</div>
+                    </div>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-icon">💡</div>
+                    <div class="comp-content">
+                        <div class="comp-title">第七届"互联网+"创新创业大赛</div>
+                        <div class="comp-award">重庆赛区金奖</div>
+                        <div class="comp-desc">中国国际"互联网+"大学生创新创业大赛</div>
+                    </div>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-icon">🔬</div>
+                    <div class="comp-content">
+                        <div class="comp-title">第十七届"挑战杯"竞赛</div>
+                        <div class="comp-award">重庆市一等奖</div>
+                        <div class="comp-desc">全国大学生课外学术科技作品竞赛红色专项</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Quote Section -->
         <section class="quote-section fade-in">
-            <p class="quote-text">代码是实现想法的工具，而创意才是改变世界的力量</p>
-            <p class="quote-author">— BucktoothCupid</p>
+            <p class="quote-text">以技术为舟，以创新为帆，在知识的海洋中砥砺前行</p>
+            <p class="quote-author">— ZTY</p>
         </section>
 
         <!-- Skills Section -->
@@ -1751,38 +2258,38 @@
 
         <!-- Timeline Section -->
         <section class="timeline-section fade-in" id="timeline">
-            <h2 class="section-title">开发历程</h2>
+            <h2 class="section-title">学习历程</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-year">2019 - 2023</div>
-                        <h3 class="timeline-title">初识编程</h3>
-                        <p class="timeline-desc">开始学习Java编程，打下坚实的编程基础。</p>
+                        <h3 class="timeline-title">本科 · 重庆大学</h3>
+                        <p class="timeline-desc">电子信息工程专业学习，打下坚实的编程基础，开始参与学生工作和志愿服务。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-year">2023 - 2024</div>
-                        <h3 class="timeline-title">全栈进阶</h3>
-                        <p class="timeline-desc">深入学习SpringBoot、SpringCloud微服务架构，掌握前后端分离开发模式。</p>
+                        <h3 class="timeline-title">竞赛与创业</h3>
+                        <p class="timeline-desc">参加"互联网+"、"挑战杯"等竞赛并获奖，参与国家级创业实践项目"小农优品"并优秀结项。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-year">2024 - 2025</div>
-                        <h3 class="timeline-title">AI探索</h3>
-                        <p class="timeline-desc">开始接触AI领域，学习Python和机器学习，将AI技术与实际项目结合。</p>
+                        <div class="timeline-year">2024 - 至今</div>
+                        <h3 class="timeline-title">硕士 · 电子科技大学</h3>
+                        <p class="timeline-desc">电子信息专业硕士在读，深入学习后端开发与AI技术，专注SpringCloud微服务架构设计。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-year">2025 - 至今</div>
+                        <div class="timeline-year">未来</div>
                         <h3 class="timeline-title">持续成长</h3>
-                        <p class="timeline-desc">专注于企业级应用开发与AI技术融合，不断追求技术卓越。</p>
+                        <p class="timeline-desc">专注于企业级应用开发与AI技术融合，不断追求技术卓越，为社会贡献力量。</p>
                     </div>
                 </div>
             </div>
@@ -1819,6 +2326,8 @@
             </div>
             <div class="footer-links">
                 <a href="#about" class="footer-link">关于</a>
+                <a href="#education" class="footer-link">教育</a>
+                <a href="#honors" class="footer-link">荣誉</a>
                 <a href="#skills" class="footer-link">技能</a>
                 <a href="#projects" class="footer-link">项目</a>
                 <a href="#timeline" class="footer-link">历程</a>
@@ -1826,7 +2335,7 @@
             </div>
             <div class="footer-divider"></div>
             <p class="footer-bottom">
-                Made with <span>❤</span> by BucktoothCupid © 2024
+                Made with <span>❤</span> by ZTY © 2026
             </p>
         </footer>
     </div>
@@ -1930,9 +2439,11 @@
         function initFloatingNav() {
             const navDots = document.querySelectorAll('.nav-dot');
             const sections = {
-                'header': document.querySelector('header'),
+                'header': document.getElementById('header'),
                 'stats': document.querySelector('.stats'),
                 'about': document.getElementById('about'),
+                'education': document.getElementById('education'),
+                'honors': document.getElementById('honors'),
                 'skills': document.querySelector('.skills-section'),
                 'projects': document.querySelector('.projects-section'),
                 'timeline': document.getElementById('timeline'),
