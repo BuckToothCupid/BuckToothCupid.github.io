@@ -232,6 +232,19 @@
             border-radius: 50%;
             animation: float 15s infinite;
             opacity: 0.6;
+            box-shadow: 0 0 6px var(--pink-primary), 0 0 12px var(--pink-glow);
+        }
+
+        .particle.large {
+            width: 6px;
+            height: 6px;
+            box-shadow: 0 0 10px var(--pink-primary), 0 0 20px var(--pink-glow), 0 0 30px var(--pink-dark);
+        }
+
+        .particle.small {
+            width: 2px;
+            height: 2px;
+            box-shadow: 0 0 4px var(--pink-primary);
         }
 
         @keyframes float {
@@ -2344,16 +2357,18 @@
         // Create floating particles
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 30;
+            const particleCount = 80;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
+                const sizeClass = Math.random() > 0.7 ? (Math.random() > 0.5 ? 'large' : 'small') : '';
+                particle.className = 'particle ' + sizeClass;
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-                particle.style.width = (2 + Math.random() * 4) + 'px';
+                particle.style.animationDuration = (8 + Math.random() * 12) + 's';
+                particle.style.width = (2 + Math.random() * 5) + 'px';
                 particle.style.height = particle.style.width;
+                particle.style.opacity = 0.3 + Math.random() * 0.7;
                 container.appendChild(particle);
             }
         }
