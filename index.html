@@ -31,6 +31,174 @@
             overflow-x: hidden;
         }
 
+        /* Intro Animation Overlay */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Heart Burst Container */
+        .heart-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-heart {
+            font-size: 80px;
+            animation: heartbeat 0.6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--pink-primary));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Exploding Hearts */
+        .explosion-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: explode 1.5s ease-out forwards;
+            filter: drop-shadow(0 0 10px var(--pink-primary));
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Welcome Text */
+        .welcome-text {
+            margin-top: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            opacity: 0;
+            animation: welcomeAppear 1s ease forwards;
+            animation-delay: 0.5s;
+            background: linear-gradient(90deg, var(--pink-primary), #ff85c1, var(--pink-glow), var(--pink-primary));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: welcomeAppear 1s ease forwards, gradientShift 2s ease infinite;
+            animation-delay: 0.5s, 1.5s;
+            text-shadow: none;
+            filter: drop-shadow(0 0 30px var(--pink-primary));
+            position: relative;
+        }
+
+        .welcome-text::before {
+            content: '欢迎进入我的主页！';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink-primary), #ff85c1, var(--pink-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(10px);
+            opacity: 0.5;
+            animation: glowPulse 1s ease infinite;
+        }
+
+        @keyframes welcomeAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; filter: blur(10px); }
+            50% { opacity: 0.8; filter: blur(15px); }
+        }
+
+        /* Typing effect */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid var(--pink-primary);
+            white-space: nowrap;
+            animation: typing 2s steps(10) forwards, blink 0.7s step-end infinite;
+            animation-delay: 0.8s, 0.8s;
+            width: 0;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Sci-fi Particles around welcome */
+        .sci-fi-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--pink-primary);
+            border-radius: 50%;
+            animation: orbit 3s linear infinite;
+            box-shadow: 0 0 10px var(--pink-primary);
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); opacity: 1; }
+            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); opacity: 0.5; }
+        }
+
+        /* Glitch lines */
+        .glitch-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pink-primary), transparent);
+            animation: glitchMove 0.5s linear infinite;
+        }
+
+        @keyframes glitchMove {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
         /* Animated Background */
         .bg-grid {
             position: fixed;
@@ -81,6 +249,16 @@
                 transform: translateY(-100vh) rotate(720deg);
                 opacity: 0;
             }
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .main-content.visible {
+            opacity: 1;
         }
 
         /* Header */
@@ -523,6 +701,10 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .welcome-text {
+                font-size: 1.8rem;
+            }
         }
 
         /* Glitch effect for title */
@@ -599,261 +781,256 @@
                 0 0 20px var(--pink-primary),
                 0 0 40px var(--pink-glow);
         }
-
-        /* Typing cursor */
-        .typing-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1.2em;
-            background: var(--pink-primary);
-            margin-left: 5px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
     </style>
 </head>
 <body>
+    <!-- Intro Animation -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="heart-container" id="heartContainer">
+            <div class="main-heart">💖</div>
+        </div>
+        <h1 class="welcome-text">欢迎进入我的主页！</h1>
+    </div>
+
     <div class="bg-grid"></div>
     <div class="particles" id="particles"></div>
     <div class="scan-line"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="avatar-container">
-            <div class="avatar-ring"></div>
-            <div class="avatar">
-                <!-- 头像图片预留位置，替换 src 为你的头像路径 -->
-                <!-- <img src="your-avatar.jpg" alt="Profile Avatar"> -->
-                <span class="avatar-placeholder">B</span>
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header>
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="avatar">
+                    <!-- 头像图片预留位置，替换 src 为你的头像路径 -->
+                    <!-- <img src="your-avatar.jpg" alt="Profile Avatar"> -->
+                    <span class="avatar-placeholder">B</span>
+                </div>
             </div>
-        </div>
-        <h1 class="name glitch" data-text="BucktoothCupid">BucktoothCupid</h1>
-        <p class="title">Full Stack Developer & Tech Enthusiast</p>
-        <p class="bio">
-            热爱代码，追求卓越。专注于构建高性能、可扩展的应用程序。
-            热衷于探索前沿技术，为开源社区贡献力量。
-        </p>
-        <div class="social-links">
-            <a href="https://github.com/BucktoothCupid" class="social-link" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                GitHub
-            </a>
-            <a href="mailto:hello@bucktoothcupid.com" class="social-link">
-                <svg viewBox="0 0 24 24" fill="currentColor">
+            <h1 class="name glitch" data-text="BucktoothCupid">BucktoothCupid</h1>
+            <p class="title">Full Stack Developer & Tech Enthusiast</p>
+            <p class="bio">
+                热爱代码，追求卓越。专注于构建高性能、可扩展的应用程序。
+                热衷于探索前沿技术，为开源社区贡献力量。
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/BucktoothCupid" class="social-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="mailto:hello@bucktoothcupid.com" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    邮箱
+                </a>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-value">3+</div>
+                <div class="stat-label">年开发经验</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50+</div>
+                <div class="stat-label">完成项目</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1k+</div>
+                <div class="stat-label">GitHub Stars</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">20+</div>
+                <div class="stat-label">开源贡献</div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <h2 class="section-title">技术栈</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-name">Frontend</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <div class="skill-name">Backend</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <div class="skill-name">DevOps</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <div class="skill-name">Mobile</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-name">AI/ML</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <div class="skill-name">Database</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h2 class="section-title">精选项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🚀</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI 智能助手</h3>
+                        <p class="project-description">基于大语言模型的智能对话系统，支持多轮对话、上下文理解和知识库问答。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">React</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 520</span>
+                            <span class="project-stat">🍴 120</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">⚡</div>
+                    <div class="project-content">
+                        <h3 class="project-title">实时协作平台</h3>
+                        <p class="project-description">支持多人实时协作的在线编辑器，采用 WebRTC 实现低延迟同步。</p>
+                        <div class="project-tags">
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Socket.io</span>
+                            <span class="tag">Redis</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 380</span>
+                            <span class="project-stat">🍴 85</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎨</div>
+                    <div class="project-content">
+                        <h3 class="project-title">可视化数据仪表盘</h3>
+                        <p class="project-description">企业级数据可视化解决方案，支持拖拽式图表配置和实时数据更新。</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 290</span>
+                            <span class="project-stat">🍴 60</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">跨平台移动应用</h3>
+                        <p class="project-description">使用 Flutter 构建的跨平台应用，实现代码复用率达到 95% 以上。</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Dart</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 180</span>
+                            <span class="project-stat">🍴 45</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🔐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">区块链溯源系统</h3>
+                        <p class="project-description">基于以太坊的供应链溯源平台，确保数据不可篡改，全程可追溯。</p>
+                        <div class="project-tags">
+                            <span class="tag">Solidity</span>
+                            <span class="tag">Web3.js</span>
+                            <span class="tag">React</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 420</span>
+                            <span class="project-stat">🍴 95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">微服务电商系统</h3>
+                        <p class="project-description">高并发电商平台，采用微服务架构，支持秒杀、优惠券等营销功能。</p>
+                        <div class="project-tags">
+                            <span class="tag">Go</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">gRPC</span>
+                        </div>
+                        <div class="project-stats">
+                            <span class="project-stat">⭐ 650</span>
+                            <span class="project-stat">🍴 150</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="contact-title">联系我</h2>
+            <p class="contact-text">
+                对技术充满热情？想要合作或交流？
+                随时欢迎与我联系！
+            </p>
+            <a href="mailto:hello@bucktoothcupid.com" class="contact-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                邮箱
+                发送邮件
             </a>
-        </div>
-    </header>
+        </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stat-item">
-            <div class="stat-value">3+</div>
-            <div class="stat-label">年开发经验</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">50+</div>
-            <div class="stat-label">完成项目</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">1k+</div>
-            <div class="stat-label">GitHub Stars</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">20+</div>
-            <div class="stat-label">开源贡献</div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills-section">
-        <h2 class="section-title">技术栈</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">⚡</div>
-                <div class="skill-name">Frontend</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%;"></div>
-                </div>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Security</a>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon">🔧</div>
-                <div class="skill-name">Backend</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%;"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">☁️</div>
-                <div class="skill-name">DevOps</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 75%;"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">📱</div>
-                <div class="skill-name">Mobile</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 70%;"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <div class="skill-name">AI/ML</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 65%;"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🗄️</div>
-                <div class="skill-name">Database</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 80%;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects-section">
-        <h2 class="section-title">精选项目</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">🚀</div>
-                <div class="project-content">
-                    <h3 class="project-title">AI 智能助手</h3>
-                    <p class="project-description">基于大语言模型的智能对话系统，支持多轮对话、上下文理解和知识库问答。</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">LangChain</span>
-                        <span class="tag">React</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 520</span>
-                        <span class="project-stat">🍴 120</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">⚡</div>
-                <div class="project-content">
-                    <h3 class="project-title">实时协作平台</h3>
-                    <p class="project-description">支持多人实时协作的在线编辑器，采用 WebRTC 实现低延迟同步。</p>
-                    <div class="project-tags">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Socket.io</span>
-                        <span class="tag">Redis</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 380</span>
-                        <span class="project-stat">🍴 85</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">🎨</div>
-                <div class="project-content">
-                    <h3 class="project-title">可视化数据仪表盘</h3>
-                    <p class="project-description">企业级数据可视化解决方案，支持拖拽式图表配置和实时数据更新。</p>
-                    <div class="project-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">D3.js</span>
-                        <span class="tag">Node.js</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 290</span>
-                        <span class="project-stat">🍴 60</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">📱</div>
-                <div class="project-content">
-                    <h3 class="project-title">跨平台移动应用</h3>
-                    <p class="project-description">使用 Flutter 构建的跨平台应用，实现代码复用率达到 95% 以上。</p>
-                    <div class="project-tags">
-                        <span class="tag">Flutter</span>
-                        <span class="tag">Dart</span>
-                        <span class="tag">Firebase</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 180</span>
-                        <span class="project-stat">🍴 45</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">🔐</div>
-                <div class="project-content">
-                    <h3 class="project-title">区块链溯源系统</h3>
-                    <p class="project-description">基于以太坊的供应链溯源平台，确保数据不可篡改，全程可追溯。</p>
-                    <div class="project-tags">
-                        <span class="tag">Solidity</span>
-                        <span class="tag">Web3.js</span>
-                        <span class="tag">React</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 420</span>
-                        <span class="project-stat">🍴 95</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">🌐</div>
-                <div class="project-content">
-                    <h3 class="project-title">微服务电商系统</h3>
-                    <p class="project-description">高并发电商平台，采用微服务架构，支持秒杀、优惠券等营销功能。</p>
-                    <div class="project-tags">
-                        <span class="tag">Go</span>
-                        <span class="tag">Kubernetes</span>
-                        <span class="tag">gRPC</span>
-                    </div>
-                    <div class="project-stats">
-                        <span class="project-stat">⭐ 650</span>
-                        <span class="project-stat">🍴 150</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <h2 class="contact-title">联系我</h2>
-        <p class="contact-text">
-            对技术充满热情？想要合作或交流？
-            随时欢迎与我联系！
-        </p>
-        <a href="mailto:hello@bucktoothcupid.com" class="contact-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-            发送邮件
-        </a>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy</a>
-            <a href="#" class="footer-link">Terms</a>
-            <a href="#" class="footer-link">Security</a>
-        </div>
-        <p>&copy; 2024 BucktoothCupid. All rights reserved.</p>
-    </footer>
+            <p>&copy; 2024 BucktoothCupid. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
         // Create floating particles
@@ -885,10 +1062,85 @@
             });
         }
 
+        // Heart Explosion Effect
+        function createHeartExplosion() {
+            const container = document.getElementById('heartContainer');
+            const hearts = ['💖', '💗', '💕', '💓', '💝', '❤️', '🩷', '💘'];
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'explosion-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                const angle = (i / particleCount) * 360;
+                const distance = 100 + Math.random() * 100;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+                
+                heart.style.setProperty('--tx', tx + 'px');
+                heart.style.setProperty('--ty', ty + 'px');
+                heart.style.animationDelay = (Math.random() * 0.3) + 's';
+                
+                container.appendChild(heart);
+            }
+        }
+
+        // Create sci-fi orbit particles
+        function createSciFiParticles() {
+            const overlay = document.getElementById('introOverlay');
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'sci-fi-particle';
+                particle.style.animationDelay = (i * 0.3) + 's';
+                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
+                overlay.appendChild(particle);
+            }
+        }
+
+        // Create glitch lines
+        function createGlitchLines() {
+            const overlay = document.getElementById('introOverlay');
+            for (let i = 0; i < 5; i++) {
+                const line = document.createElement('div');
+                line.className = 'glitch-line';
+                line.style.top = (Math.random() * 100) + '%';
+                line.style.width = (50 + Math.random() * 50) + '%';
+                line.style.animationDelay = (i * 0.2) + 's';
+                overlay.appendChild(line);
+            }
+        }
+
+        // Initialize intro animation
+        function initIntro() {
+            createSciFiParticles();
+            createGlitchLines();
+            
+            // Start heart explosion after a short delay
+            setTimeout(() => {
+                createHeartExplosion();
+            }, 300);
+
+            // Fade out intro and show main content
+            setTimeout(() => {
+                const overlay = document.getElementById('introOverlay');
+                const mainContent = document.getElementById('mainContent');
+                
+                overlay.classList.add('fade-out');
+                mainContent.classList.add('visible');
+                
+                // Clean up intro elements after animation
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    createParticles();
+                    animateSkills();
+                }, 1500);
+            }, 3000);
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            animateSkills();
+            initIntro();
         });
 
         // Smooth scroll effect
