@@ -1376,6 +1376,104 @@
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
+
+        /* Email Modal */
+        .email-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .email-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--pink-primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.3);
+            position: relative;
+        }
+
+        .email-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--pink-primary);
+        }
+
+        .modal-email {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            padding: 15px 25px;
+            background: rgba(255, 105, 180, 0.1);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 10px;
+            margin-bottom: 25px;
+            word-break: break-all;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-primary));
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--pink-primary);
+        }
+
+        /* Copy animation */
+        .copy-btn.copied {
+            background: #28a745;
+        }
     </style>
 </head>
 <body>
@@ -1390,6 +1488,18 @@
     <div class="bg-grid"></div>
     <div class="particles" id="particles"></div>
     <div class="scan-line"></div>
+
+    <!-- Email Modal -->
+    <div class="email-modal" id="emailModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-icon">📧</div>
+            <h3 class="modal-title">我的邮箱</h3>
+            <div class="modal-email">18080902107@163.com</div>
+            <button class="modal-btn copy-btn" id="copyBtn">复制邮箱</button>
+            <button class="modal-btn" onclick="window.location.href='mailto:18080902107@163.com'">发送邮件</button>
+        </div>
+    </div>
 
     <!-- Floating Navigation -->
     <nav class="floating-nav">
@@ -1433,7 +1543,7 @@
                     </svg>
                     GitHub
                 </a>
-                <a href="mailto:18080902107@163.com" class="social-link">
+                <a href="#" class="social-link" id="emailBtn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
@@ -1480,7 +1590,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        你好！我是 BucktoothCupid，一名开发工程师。
+                        你好！我是 BucktoothCupid，一名全栈开发工程师。
                         我热爱编程，享受用代码创造价值的过程。在过去的3年里，
                         我一直专注于企业级应用开发和微服务架构设计。
                     </p>
@@ -1491,7 +1601,7 @@
                     <div class="about-highlights">
                         <div class="highlight-item">
                             <span class="highlight-icon">🎯</span>
-                            <span class="highlight-text">后端开发</span>
+                            <span class="highlight-text">全栈开发</span>
                         </div>
                         <div class="highlight-item">
                             <span class="highlight-icon">🚀</span>
@@ -1499,7 +1609,7 @@
                         </div>
                         <div class="highlight-item">
                             <span class="highlight-icon">💡</span>
-                            <span class="highlight-text">AI技术探索</span>
+                            <span class="highlight-text">技术探索</span>
                         </div>
                         <div class="highlight-item">
                             <span class="highlight-icon">🤝</span>
@@ -1876,6 +1986,44 @@
             });
         }
 
+        // Email Modal
+        function initEmailModal() {
+            const modal = document.getElementById('emailModal');
+            const emailBtn = document.getElementById('emailBtn');
+            const closeBtn = document.getElementById('modalClose');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // Open modal
+            emailBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+            });
+
+            // Close modal
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Copy email
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText('18080902107@163.com').then(() => {
+                    copyBtn.textContent = '已复制!';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.textContent = '复制邮箱';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+
         // Fade In Animation on Scroll
         function initFadeInAnimation() {
             const observer = new IntersectionObserver((entries) => {
@@ -1926,6 +2074,7 @@
             initFloatingNav();
             initBackToTop();
             initFadeInAnimation();
+            initEmailModal();
         });
 
         // Smooth scroll effect
